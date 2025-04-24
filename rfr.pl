@@ -660,6 +660,11 @@ sub t2r {
 		next;
 	  }
 
+	  my @tags = @{$tr_res->{'labels'}};
+	  my $transmission_tag = $ENV{'TRANSMISSION_TAG'} // 'transmission';
+	  if ( length( $transmission_tag ) ) {
+		push( @tags, $transmission_tag );
+	  }
 	  my $rt_data = {
 		'state' => $tr_res->{'paused'} ? 0 : 1,
 		#'complete' => defined $tr_res->{'progress'}{'have'} ? 1 :0,
@@ -668,7 +673,7 @@ sub t2r {
 		'state_changed' => $tr_res->{'activity-date'},
 		'total_uploaded' => $tr_res->{'uploaded'},
 		'total_downloaded' => $tr_res->{'downloaded'},
-		'custom1' => 'transmission',
+		'custom1' => join( ',', @tags ),
 		'hashing' => 0,
   	  };
 
