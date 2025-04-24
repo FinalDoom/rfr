@@ -663,7 +663,7 @@ sub t2r {
 	  my $rt_data = {
 		'state' => $tr_res->{'paused'} ? 0 : 1,
 		#'complete' => defined $tr_res->{'progress'}{'have'} ? 1 :0,
-		'custom' => {'addtime' => $tr_res->{'added-date'} },
+		'custom' => {'addtime' => sprintf( "%d", $tr_res->{'added-date'} ) },
 		'timestamp.finished' => $tr_res->{'done-date'},
 		'state_changed' => $tr_res->{'activity-date'},
 		'total_uploaded' => $tr_res->{'uploaded'},
